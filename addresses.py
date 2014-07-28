@@ -1,5 +1,5 @@
 """The functions included in this module can be called to extract different types of adderss objects
-such as IP, MAC, URL and email addresses. """
+such as IP, URL and email addresses. """
 
 
 """
@@ -66,7 +66,7 @@ def Email(email_obj):
     	email_obj = email_obj.split()
 
     for obj in email_obj:
-        matches = re.findall(r'[\w.-]+@[\w.-]+', obj)
+        matches = re.findall(r'[\w.-]+@[\w.-]+\.[\w.-]+', obj)
         if matches:
             if matches[0] not in email_list:
                 user_list.append(matches[0])
