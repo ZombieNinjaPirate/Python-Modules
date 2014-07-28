@@ -1,5 +1,5 @@
 """The functions included in this module can be called to extract different types of adderss objects
-such as IP, MAC, URL's and email addresses. """
+such as IP, MAC, URL and email addresses. """
 
 
 """
@@ -69,7 +69,28 @@ def Email(email_obj):
         matches = re.findall(r'[\w.-]+@[\w.-]+', obj)
         if matches:
             if matches[0] not in email_list:
-                user_list.append(matches[0].split(' ')[0])
+                user_list.append(matches[0])
 
     for user in sorted(user_list):
         print user
+
+
+def URL(url_obj):
+	"""Check the url_obj, if the object is a string it will be converted to a list object. Itterate
+	over the list elements and extract anything that matches the format of any URL type and append
+	that object to the url_list if not already present. The url_list is sorted and returned as
+	url_sort. """
+    url_list = []
+    url_sort = []
+
+    if type(url_obj) == str:
+        url_obj = url_obj.split()
+
+    for obj in url_obj:
+        matches = re.findall(r'\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))', obj)
+        if matches:
+            if matches[0] not in url_list:
+                url_list.append(matches[0])
+
+    for url in sorted(url_list):
+        url_sort.append(url[0])
